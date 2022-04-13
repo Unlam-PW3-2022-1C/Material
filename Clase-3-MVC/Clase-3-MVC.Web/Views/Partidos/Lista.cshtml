@@ -1,0 +1,25 @@
+﻿@model List<PartidoViewModel>
+@{
+    ViewData["Title"] = "Partidos";
+}
+
+<h1>Partidos</h1>
+
+<div>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Horario</th>
+            <th>Lugar</th>
+        </tr>
+
+        @foreach (var partido in Model)
+        {
+            <tr>
+                <td>@partido.Fecha.ToString("dd/MM/yy")</td>
+                <td>@partido.Fecha.ToString("hh:mm")hs</td>
+                <td>@partido.Lugar</td>
+            </tr>
+        }
+    </table>
+</div>
