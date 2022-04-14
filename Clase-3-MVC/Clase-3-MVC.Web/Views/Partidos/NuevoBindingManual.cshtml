@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Nuevo Partido";
+}
+
+<form action="/Partidos/NuevoBindingManual" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        Fecha: <input type="datetime-local" name="Fecha" value="" />
+    </div>
+    <div>
+        Lugar: <input type="text" name="Lugar" value="" />
+    </div>
+
+    <input type="submit" name="Nuevo" value="Nuevo" />
+</form>
