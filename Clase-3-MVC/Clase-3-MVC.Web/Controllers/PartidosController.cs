@@ -10,15 +10,16 @@ namespace Clase_3_MVC.Web.Controllers
 {
     public class PartidosController : Controller
     {
-        // GET: PartidosController
-        public ActionResult Lista()
-        {
-            List<PartidoViewModel> partidos = new List<PartidoViewModel>()
+        private static List<PartidoViewModel> _partidos = new List<PartidoViewModel>()
             {
                 new PartidoViewModel() {  Fecha = new DateTime(2022, 4, 12), Lugar = "La Bombonera" },
                 new PartidoViewModel() {  Fecha = new DateTime(2022, 4, 13), Lugar = "El Monumental" },
             };
-            return View(partidos);
+
+        // GET: PartidosController
+        public ActionResult Lista()
+        {
+            return View(_partidos);
         }
 
         // GET: PartidosController/Nuevo
@@ -34,7 +35,13 @@ namespace Clase_3_MVC.Web.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                PartidoViewModel nuevoPartido = new PartidoViewModel() 
+                {
+                    Fecha = Convert.ToDateTime(collection["FechaHora"]), 
+                    Lugar = collection["Lugar"] 
+                };
+                _partidos.Add(nuevoPartido);
+                return RedirectToAction(nameof(Lista));
             }
             catch
             {
