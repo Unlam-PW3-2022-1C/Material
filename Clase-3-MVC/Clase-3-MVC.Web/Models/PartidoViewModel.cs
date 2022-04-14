@@ -7,6 +7,7 @@ namespace Clase_3_MVC.Web.Models
 {
     public class PartidoViewModel
     {
+        public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public string Lugar { get; set; }
     }
