@@ -1,0 +1,25 @@
+﻿@model List<EquipoViewModel>
+@{
+    ViewData["Title"] = "Equipos";
+}
+<h1>Equipos</h1>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th>Eliminar</th>
+        </tr>
+        @foreach (var equipo in Model)
+        {
+        <tr>
+            <td>@equipo.Id</td>
+            <td>@equipo.Nombre</td>
+            <td>@equipo.Pais</td>
+            <td><a href="/equipos/eliminarConfirmacion/@equipo.Id">Eliminar</a></td>
+        </tr>
+
+        }
+    </table>
+</div>

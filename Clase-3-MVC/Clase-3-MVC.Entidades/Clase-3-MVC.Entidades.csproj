@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Clase_3_MVC.Entidades</RootNamespace>
+  </PropertyGroup>
+
+</Project>

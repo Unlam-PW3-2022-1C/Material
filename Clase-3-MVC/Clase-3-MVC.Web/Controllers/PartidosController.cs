@@ -1,6 +1,8 @@
-﻿using Clase_3_MVC.Web.Models;
+﻿using Clase_3_MVC.Entidades.Models;
+using Clase_3_MVC.Servicios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +12,17 @@ namespace Clase_3_MVC.Web.Controllers
 {
     public class PartidosController : Controller
     {
-        private static List<PartidoViewModel> _partidos = new List<PartidoViewModel>()
-            {
-                new PartidoViewModel() { Id =1,  Fecha = new DateTime(2022, 4, 12), Lugar = "La Bombonera" },
-                new PartidoViewModel() { Id =2, Fecha = new DateTime(2022, 4, 13), Lugar = "El Monumental" },
-            };
+        private readonly IPartidoService _partidoService;
 
-        // GET: PartidosController
+        public PartidosController(IPartidoService partidoService)
+        {
+            _partidoService = partidoService;
+        }
+
+        [HttpGet]
         public ActionResult Lista()
         {
-            return View(_partidos);
+            return View(_partidoService.ObtenerTodos());
         }
 
         // GET: PartidosController/NuevoBindingManual
@@ -35,13 +38,7 @@ namespace Clase_3_MVC.Web.Controllers
         {
             try
             {
-                PartidoViewModel nuevoPartido = new PartidoViewModel()
-                {
-                    Id = _partidos.Max(o => o.Id) + 1,
-                    Fecha = Convert.ToDateTime(collection["Fecha"]),
-                    Lugar = collection["Lugar"]
-                };
-                _partidos.Add(nuevoPartido);
+                _partidoService.Agregar(collection);
                 return RedirectToAction(nameof(Lista));
             }
             catch
@@ -63,7 +60,7 @@ namespace Clase_3_MVC.Web.Controllers
         {
             try
             {
-                _partidos.Add(partido);
+                _partidoService.Agregar(partido);
                 return RedirectToAction(nameof(Lista));
             }
             catch
@@ -78,15 +75,35 @@ namespace Clase_3_MVC.Web.Controllers
             {
                 return RedirectToAction(nameof(Lista));
             }
-            _partidos.RemoveAll(o => o.Id == id);
+            _partidoService.Borrar(id);
             return RedirectToAction(nameof(Lista));
         }
 
-        // GET: PartidosController/EliminarConfirmacion/5
+        //// GET: PartidosController/EliminarConfirmacion/5
         public ActionResult EliminarConfirmacion(int id)
         {
-            PartidoViewModel partido = _partidos.Find(o => o.Id == id);
+            PartidoViewModel partido = _partidoService.ObtenerTodos().Find(o => o.Id == id);
             return View(partido);
+        }
+
+        public ActionResult PartidoNotFound()
+        {
+            return View();
+        }
+
+        [Route("Partidos/DelDia/{dia}/{mes}/{anio}")]
+        public ActionResult DelDia(int dia, int mes, int anio)
+        {
+            List<PartidoViewModel> partidosFecha = _partidoService.BuscarPorFecha(dia, mes, anio);
+
+            if (partidosFecha != null)
+            {
+                return View(partidosFecha);
+
+            }
+            return RedirectToAction(nameof(PartidoNotFound));
+
+
         }
     }
 }

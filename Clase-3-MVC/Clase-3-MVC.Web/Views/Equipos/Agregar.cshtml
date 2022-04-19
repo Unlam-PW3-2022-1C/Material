@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Nuevo Equipo";
+}
+
+<form action="/Equipos/Agregar" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        Nombre: <input type="text" name="Nombre" value="" />
+    </div>
+    <div>
+        Pais: <input type="text" name="Pais" value="" />
+    </div>
+    <input type="submit" name="Agregar" value="Agregar" />
+</form>

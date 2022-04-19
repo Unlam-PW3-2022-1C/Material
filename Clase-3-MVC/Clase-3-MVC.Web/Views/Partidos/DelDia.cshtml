@@ -1,9 +1,6 @@
 ﻿@model List<PartidoViewModel>
-@{
-    ViewData["Title"] = "Partidos";
-}
 
-<h1>Partidos</h1>
+<h1>Partidos del día @Model[0].Fecha.ToString("dd/MM/yy")</h1>
 
 <div>
     <table>
@@ -12,6 +9,7 @@
             <th>Horario</th>
             <th>Lugar</th>
             <th>Eliminar</th>
+            <th>Eliminar con confirmacion</th>
         </tr>
 
         @foreach (var partido in Model)
@@ -20,8 +18,11 @@
                 <td>@partido.Fecha.ToString("dd/MM/yy")</td>
                 <td>@partido.Fecha.ToString("hh:mm")hs</td>
                 <td>@partido.Lugar</td>
-                <td><a href="/partidos/eliminarConfirmacion/@partido.Id">Eliminar</a></td>
+                <td><a href="/partidos/eliminar/@partido.Id">Eliminar</a></td>
+                <td><a href="/partidos/eliminarConfirmacion/@partido.Id">Eliminar con Confirmacion</a></td>
             </tr>
         }
     </table>
 </div>
+
+

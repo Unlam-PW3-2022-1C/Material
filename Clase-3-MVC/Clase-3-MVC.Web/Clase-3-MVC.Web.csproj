@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Clase-3-MVC.Entidades\Clase-3-MVC.Entidades.csproj" />
+    <ProjectReference Include="..\Clase-3-MVC.Servicios\Clase-3-MVC.Servicios.csproj" />
+  </ItemGroup>
+
 </Project>

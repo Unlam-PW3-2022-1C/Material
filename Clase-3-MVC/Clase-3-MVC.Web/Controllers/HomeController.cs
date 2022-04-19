@@ -1,4 +1,4 @@
-﻿using Clase_3_MVC.Web.Models;
+﻿using Clase_3_MVC.Entidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
