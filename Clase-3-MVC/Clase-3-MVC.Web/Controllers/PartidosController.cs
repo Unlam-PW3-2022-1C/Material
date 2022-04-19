@@ -1,6 +1,8 @@
 ﻿using Clase_3_MVC.Web.Models;
+using Clase_3_MVC.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,60 +12,55 @@ namespace Clase_3_MVC.Web.Controllers
 {
     public class PartidosController : Controller
     {
-        private static List<PartidoViewModel> _partidos = new List<PartidoViewModel>()
-            {
-                new PartidoViewModel() { Id =1,  Fecha = new DateTime(2022, 4, 12), Lugar = "La Bombonera" },
-                new PartidoViewModel() { Id =2, Fecha = new DateTime(2022, 4, 13), Lugar = "El Monumental" },
-            };
+        private readonly ILogger<PartidosController> _logger;
+        private readonly IPartidosService _partidosService;
 
-        // GET: PartidosController
-        public ActionResult Lista()
+        public PartidosController(ILogger<PartidosController> looger, IPartidosService partidosService)
         {
-            return View(_partidos);
+            _logger = looger;
+            _partidosService = partidosService;
         }
 
-        // GET: PartidosController/NuevoBindingManual
+        [HttpGet]
+        public ActionResult Lista()
+        {
+            return View(_partidosService.Lista());
+        }
+
+        [HttpGet]
         public ActionResult NuevoBindingManual()
         {
             return View();
         }
 
-        // POST: PartidosController/Nuevo
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NuevoBindingManual(IFormCollection collection)
+        public ActionResult NuevoBindingManual(IFormCollection form)
         {
             try
             {
-                PartidoViewModel nuevoPartido = new PartidoViewModel()
-                {
-                    Id = _partidos.Max(o => o.Id) + 1,
-                    Fecha = Convert.ToDateTime(collection["Fecha"]),
-                    Lugar = collection["Lugar"]
-                };
-                _partidos.Add(nuevoPartido);
+                _partidosService.NuevoBindingManual(form);
                 return RedirectToAction(nameof(Lista));
             }
-            catch
+            catch (Exception)
             {
                 return View();
             }
         }
 
-        // GET: PartidosController/Nuevo
+        [HttpGet]
         public ActionResult Nuevo()
         {
             return View();
         }
 
-        // POST: PartidosController/Nuevo
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Nuevo(PartidoViewModel partido)
         {
             try
             {
-                _partidos.Add(partido);
+                _partidosService.Nuevo(partido);
                 return RedirectToAction(nameof(Lista));
             }
             catch
@@ -71,22 +68,48 @@ namespace Clase_3_MVC.Web.Controllers
                 return View();
             }
         }
-        // GET: PartidosController/Eliminar/5
+
+        [HttpGet]
+        public ActionResult EliminarSinConfirmar(int id)
+        {
+            _partidosService.Eliminar(id);
+            return RedirectToAction(nameof(Lista));
+        }
+
+        [HttpGet]
+        public ActionResult EliminarConfirmacion(int id)
+        {
+            return View(_partidosService.Encontrar(id));
+        }
+
+        [HttpPost]
         public ActionResult Eliminar(int id)
         {
             if (Request.Form["Confirmar"] == "Cancelar")
             {
                 return RedirectToAction(nameof(Lista));
             }
-            _partidos.RemoveAll(o => o.Id == id);
+            _partidosService.Eliminar(id);
             return RedirectToAction(nameof(Lista));
         }
 
-        // GET: PartidosController/EliminarConfirmacion/5
-        public ActionResult EliminarConfirmacion(int id)
+        [HttpGet]
+        public ActionResult Buscar()
         {
-            PartidoViewModel partido = _partidos.Find(o => o.Id == id);
-            return View(partido);
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult DelDia(DateTime fecha)
+        {
+            return RedirectToAction(nameof(DelDia), new { dia = fecha.Day, mes = fecha.Month, anio = fecha.Year });
+        }
+        [HttpGet]
+        
+        public ActionResult DelDia(int dia, int mes, int anio)
+        {
+            var partidos = _partidosService.EncontrarPartidos(dia, mes, anio);
+            return View(partidos);
         }
     }
 }

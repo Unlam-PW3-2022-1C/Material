@@ -6,7 +6,9 @@
 <h1>Partidos</h1>
 
 <div>
-    <table>
+    <a href="/partidos/Nuevo" class="btn btn-outline-primary">Nuevo</a>
+    <a href="/partidos/NuevoBindingManual" class="btn btn-outline-primary">Nuevo Binding Manual</a>
+    <table class="table">
         <tr>
             <th>Fecha</th>
             <th>Horario</th>
@@ -21,8 +23,8 @@
                 <td>@partido.Fecha.ToString("dd/MM/yy")</td>
                 <td>@partido.Fecha.ToString("hh:mm")hs</td>
                 <td>@partido.Lugar</td>
-                <td><a href="/partidos/eliminar/@partido.Id">Eliminar</a></td>
-                <td><a href="/partidos/eliminarConfirmacion/@partido.Id">Eliminar con Confirmacion</a></td>
+                <td><a href="/partidos/EliminarSinConfirmar/@partido.Id" class="btn btn-outline-primary">Eliminar</a></td>
+                <td><a href="/partidos/EliminarConfirmacion/@partido.Id" class="btn btn-outline-primary">Eliminar con Confirmacion</a></td>
             </tr>
         }
     </table>

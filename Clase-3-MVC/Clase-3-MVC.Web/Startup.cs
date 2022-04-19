@@ -1,3 +1,5 @@
+using Clase_3_MVC.Web.Services;
+using Clase_3_MVC.Web.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +25,7 @@ namespace Clase_3_MVC.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IPartidosService, PartidosService>();
             services.AddControllersWithViews();
         }
 
@@ -51,6 +54,12 @@ namespace Clase_3_MVC.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "fecha",
+                    pattern: "{controller=Partidos}/{action=DelDia}/{dia}/{mes}/{anio}");
             });
         }
     }
