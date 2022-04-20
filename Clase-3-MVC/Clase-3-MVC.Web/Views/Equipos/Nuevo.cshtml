@@ -7,13 +7,13 @@
 <form action="/Equipos/Nuevo" method="post">
     @Html.AntiForgeryToken()
     <div>
-        Nombre: <input type="text" name="Nombre" />
+        Nombre: <input type="text" name="Nombre" class="form-control"/ >
     </div>
     <div>
-        Pais: <input type="text" name="Pais" />
+        Pais: <input type="text" name="Pais" class="form-control" />
     </div>
     <div>
-        Liga: <input type="text" name="Liga" />
+        Liga: <input type="text" name="Liga" class="form-control mb-3" />
     </div>
-    <input type="submit" value="Nuevo" />
+    <input type="submit" value="Aceptar" class="btn btn-outline-primary" />
 </form>

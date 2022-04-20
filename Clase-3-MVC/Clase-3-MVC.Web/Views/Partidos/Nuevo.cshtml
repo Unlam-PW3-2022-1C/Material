@@ -3,14 +3,16 @@
     ViewData["Title"] = "Nuevo Partido";
 }
 
+<h1>Nuevo Partido</h1>
+
 <form action="/Partidos/Nuevo" method="post">
     @Html.AntiForgeryToken()
     <div>
-        Fecha: <input type="datetime-local" name="Fecha" value="" />
+        Fecha: <input type="datetime-local" name="Fecha" class="form-control" />
     </div>
     <div>
-        Lugar: <input type="text" name="Lugar" value="" />
+        Lugar: <input type="text" name="Lugar" class="form-control mb-3" />
     </div>
 
-    <input type="submit" name="Nuevo" value="Nuevo" />
+    <input type="submit" value="Aceptar" class="btn btn-outline-primary" />
 </form>
