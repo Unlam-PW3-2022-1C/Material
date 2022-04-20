@@ -1,3 +1,4 @@
+using Clase_3_MVC.Web.Servicio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,10 @@ namespace Clase_3_MVC.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.Add(new ServiceDescriptor(typeof(Servicio.IServicioPartido), new ServicioPartido()));
+            services.Add(new ServiceDescriptor(typeof(Servicio.IServicioEquipo), new ServicioEquipo()));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

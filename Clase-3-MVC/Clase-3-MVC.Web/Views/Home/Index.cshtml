@@ -1,8 +1,30 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    //como agregar nuevo estilo para esta pagina?
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="contenedor" style="display:flex; flex-direction:column; justify-content:space-around; height:auto; padding-bottom:50px;">
+    <div class="text-center">
+
+        <h1 class="display-4">Bienvenido a Football League</h1>
+        <h1 class="h1Home"> Ver los torneos de tu liga </h1>
+    </div>
+    <div style="display:flex; flex-direction:column ; justify-content:center; align-items:center">
+
+
+        <form method="get" action="/Partidos/lista">
+            <button type="submit" class="btnHome">Mira el historial de partidos</button>
+        </form>
+
+
+        <form method="get" action="/Partidos/FormularioNuevoPartido">
+            <button type="submit" class="btnHome">Crea nuevos partidos</button>
+        </form>
+
+        <form method="get" action="/Equipos/Nuevo">
+            <button type="submit" class="btnHome">Crea nuevos Equipos</button>
+        </form>
+    </div>
+
+
 </div>

@@ -1,0 +1,72 @@
+﻿@model List<EquipoViewModel>
+
+@{
+    ViewData["Title"] = "Nuevo Partido";
+}
+<div class="contenedorSuperior">
+
+    <div class="contenedorFormNuevoPartido">
+
+        <form method="post" action="/partidos/nuevo" class="formularioNP">
+            @Html.AntiForgeryToken()
+
+            <table>
+
+                <tr>
+
+                    <th> <label for="equipoLocal" style="width:200px">Elige el Equipo Local:</label></th>
+
+                    <th>
+                        <select id="equipoLocal" name="NombreLocal" style="width:200px">
+                            @foreach (var equipo in Model)
+                            {
+                                <option value="@equipo.Nombre">@equipo.Nombre</option>
+                            }
+
+                        </select>
+                    </th>
+
+
+                </tr>
+                <tr>
+
+                    <th> <label for="equipoVisitante" style="width:200px">Elige el Equipo Visitante:</label></th>
+
+                    <th>
+                        <select id="equipoVisitante" name="NombreVisitante" style="width:200px">
+                            @foreach (var equipo in Model)
+                            {
+                                <option value="@equipo.Nombre">@equipo.Nombre</option>
+                            }
+
+                        </select>
+                    </th>
+
+
+
+
+                </tr>
+                <tr>
+                    <th> <label for="FH">Fecha y Hora</label></th>
+                    <th><input type="datetime-local" name="Fecha" id="FH"> </th>
+                </tr>
+
+                <tr>
+                    <th> <label for="estadio">Estadio</label></th>
+                    <th> <input type="text" name="Estadio" id="estadio" placeholder="Estadio" /> </th>
+                </tr>
+
+
+            </table>
+
+            <div>
+                <input type="submit" class="btn btn-dark" value="Guardar" />
+                <input type="reset" class="btn btn-dark" value="borrar todo" />
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>
