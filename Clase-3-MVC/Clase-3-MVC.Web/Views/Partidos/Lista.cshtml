@@ -3,27 +3,43 @@
     ViewData["Title"] = "Partidos";
 }
 
-<h1>Partidos</h1>
 
-<div>
-    <table>
-        <tr>
-            <th>Fecha</th>
-            <th>Horario</th>
-            <th>Lugar</th>
-            <th>Eliminar</th>
-            <th>Eliminar con confirmacion</th>
-        </tr>
-
-        @foreach (var partido in Model)
-        {
+<div class="contenedor-tabla">
+    <div class="contenedor-filtro">
+        <form method="post" action="/Partidos/DelDia">
+            <button type="submit" class="btn btn-dark"><b>Filtrar partidos por fecha</b></button>
+            <input type="date" style="height:35px" name="Fecha" />
+        </form>
+    </div>
+    <table class="table table-dark">
+        <thead>
             <tr>
-                <td>@partido.Fecha.ToString("dd/MM/yy")</td>
-                <td>@partido.Fecha.ToString("hh:mm")hs</td>
-                <td>@partido.Lugar</td>
-                <td><a href="/partidos/eliminar/@partido.Id">Eliminar</a></td>
-                <td><a href="/partidos/eliminarConfirmacion/@partido.Id">Eliminar con Confirmacion</a></td>
+                <th scope="col">id</th>
+                <th scope="col">Local</th>
+                <th scope="col">Visitante</th>
+                <th scope="col">Resultado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Estadio</th>
+
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var partido in Model)
+            {
+                <tr>
+                    <th scope="row">@partido.Id</th>
+                    <td><a href="/Equipos/info/@partido.local.Nombre">@partido.local.Nombre</a></td>
+                    <td><a href="/Equipos/info/@partido.visitante.Nombre">@partido.visitante.Nombre</a></td>
+                    <td>@partido.resultado</td>
+                    <td>@partido.Fecha.ToString("dd/MM/yy")</td>
+                    <td>@partido.Fecha.ToString("hh:mm") pm</td>
+                    <td>@partido.Lugar</td>
+                </tr>
+            }
+        </tbody>
     </table>
+
 </div>
+
+

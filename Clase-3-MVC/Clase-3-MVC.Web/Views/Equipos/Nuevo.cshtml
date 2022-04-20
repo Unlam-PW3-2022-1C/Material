@@ -1,0 +1,46 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Nuevo Equipo";
+}
+<div class="contenedorSuperior">
+
+    <div class="contenedorFormNuevoPartido">
+
+        <form method="post" action="/Equipos/crear" class="formularioNP" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <table>
+
+                <tr>
+                    <th><label for="Nombre">Nuevo Equipo</label></th>
+                    <th><input type="text" name="Nombre" id="visitante" placeholder="Nombre del Equipo" /> </th>
+
+                </tr>
+                <tr>
+                    <th> <label for="PaisEquipo">Pais</label></th>
+
+                    <th>
+                        <select id="Pais" name="Pais" style="width:200px">
+                            @foreach (var pais in Model)
+                            {
+                                <option value="@pais">@pais</option>
+                            }
+
+                        </select>
+                    </th>
+
+                </tr>
+
+            </table>
+
+            <div>
+                <input type="submit" class="btn btn-dark" value="Guardar" />
+                <input type="reset" class="btn btn-dark" value="borrar todo" />
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>

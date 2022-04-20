@@ -1,0 +1,27 @@
+﻿@model EquipoViewModel
+@{
+    ViewData["Title"] = "Partidos";
+}
+<div class="contenedorInfo" style="display:flex; justify-content:center; padding-top:50px; padding-bottom:100px">
+
+    <div class="informacion" style="height: auto; width: 600px; background-color: aliceblue;
+                            text-align: center;background-color: #454d55; padding-bottom:25px; border-radius:25px">
+
+
+        <h1 style="color:white"> @Model.Nombre </h1>
+        <hr />
+
+        @{
+            string s = ".png";
+        }
+        <img src="~/@Model.Pais@s" style="height:200px; width:300px">
+
+    </div>
+
+</div>
+
+
+</div>
+<!--Preguntar la forma de vincular el layout.-->
+<!--Preguntar como mover el input File a alguna carpeta para despues mostrarla-->
+<!--Preguntar por que no agarra el estilo-->
