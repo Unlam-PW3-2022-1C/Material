@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Nuevo Equipo";
+}
+
+<h1>Nuevo Equipo</h1>
+
+<form action="/Equipos/Nuevo" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        Nombre: <input type="text" name="Nombre" />
+    </div>
+    <div>
+        Pais: <input type="text" name="Pais" />
+    </div>
+    <div>
+        Liga: <input type="text" name="Liga" />
+    </div>
+    <input type="submit" value="Nuevo" />
+</form>

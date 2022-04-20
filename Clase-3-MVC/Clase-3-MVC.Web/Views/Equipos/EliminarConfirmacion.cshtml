@@ -1,0 +1,9 @@
+﻿@model EquipoViewModel
+<form action="/equipos/eliminar" method="post">
+    <div>
+        ¿Esta seguro que quiere eliminar el equipo @Model.Nombre?
+    </div>
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="submit" name="Confirmar" value="Eliminar" />
+    <input type="submit" name="Confirmar" value="Cancelar" />
+</form>

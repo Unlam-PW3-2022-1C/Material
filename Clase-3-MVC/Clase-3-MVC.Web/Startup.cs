@@ -26,6 +26,7 @@ namespace Clase_3_MVC.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IPartidosService, PartidosService>();
+            services.AddSingleton<IEquiposService, EquiposService>();
             services.AddControllersWithViews();
         }
 

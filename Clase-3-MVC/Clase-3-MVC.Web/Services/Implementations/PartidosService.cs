@@ -46,7 +46,7 @@ namespace Clase_3_MVC.Web.Services.Implementations
 
         public PartidoViewModel Encontrar(int id)
         {
-            return _partidos.Find(p => p.Id == id);
+            return _partidos.Find(x => x.Id == id);
         }
 
         public IEnumerable<PartidoViewModel> EncontrarPartidos(int dia, int mes, int anio)
@@ -57,7 +57,7 @@ namespace Clase_3_MVC.Web.Services.Implementations
 
         public void Eliminar(int id)
         {
-            _partidos.RemoveAll(o => o.Id == id);
+            _partidos.RemoveAll(x => x.Id == id);
         }
     }
 }
