@@ -54,14 +54,12 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
     /* Margin bottom by footer height */
     background-image: url('../imgHome.jpg');
-    height: auto;
+    
     background-size: 100%;
     padding: 0px;
     margin: 0px;
@@ -129,7 +127,6 @@ body {
 }
 
 .contenedorSuperior {
-    height:500px;
     width:100%;
     display:flex;
     justify-content:center;
@@ -155,4 +152,10 @@ body {
 
 input {
 margin:5px
+}
+
+main {
+
+    
+
 }

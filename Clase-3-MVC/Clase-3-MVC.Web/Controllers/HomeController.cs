@@ -23,7 +23,9 @@ namespace Clase_3_MVC.Web.Controllers
             return View();
         }
 
-        
+      //Que se pueda editar los partidos
+      //Que se borren los partidos del equipo que borro. (cascada)
+      //Mejorar el estilo wachin
 
        
     }
