@@ -8,7 +8,7 @@ namespace Clase_3_MVC.Web.Servicio
         static Equipos equipos = new Equipos();
         List<EquipoViewModel> ListaEQ = equipos.getEquipos();
 
-        public void agregarEquipo(EquipoViewModel equipoNuevo)
+        public void AgregarEquipo(EquipoViewModel equipoNuevo)
         {
             int id = ObtenerIdMasUno();
 
@@ -30,7 +30,7 @@ namespace Clase_3_MVC.Web.Servicio
             return null;
         }
 
-        public List<string> obtenerPaises()
+        public List<string> ObtenerPaises()
         {
             List<string> paisesExistentes = new List<string>();
 
