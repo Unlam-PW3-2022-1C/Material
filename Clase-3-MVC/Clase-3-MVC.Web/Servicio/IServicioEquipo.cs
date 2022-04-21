@@ -6,9 +6,11 @@ namespace Clase_3_MVC.Web.Servicio
     public interface IServicioEquipo
 
     {
-        void agregarEquipo(EquipoViewModel equipoNuevo);
-
-        EquipoViewModel devolverEquipo(string nombre);
-        List<string> obtenerPaises();
+        void AgregarEquipo(EquipoViewModel equipoNuevo);
+        EquipoViewModel DevolverEquipo(string nombre);
+        EquipoViewModel DevolverEquipo(int id);
+        List<string> ObtenerPaises();
+        List<EquipoViewModel> ObtenerTodos();
+        EquipoViewModel Editar(int id, EquipoViewModel equipoNuevo);
     }
 }

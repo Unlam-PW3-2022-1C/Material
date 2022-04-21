@@ -25,7 +25,7 @@ namespace Clase_3_MVC.Web.Controllers
         // GET: PartidosController
         public IActionResult Lista()
         {
-            List<PartidoViewModel> listPartidos = ISEquipo.obtenerPartidos();
+            List<PartidoViewModel> listPartidos = ISEquipo.ObtenerPartidos();
             return View(listPartidos);
         }
 
@@ -34,7 +34,7 @@ namespace Clase_3_MVC.Web.Controllers
             List<PartidoViewModel> partidosDeEseDia;
             try
             {
-                partidosDeEseDia = ISEquipo.consultarFecha(colection);
+                partidosDeEseDia = ISEquipo.ConsultarFecha(colection);
             }
             catch (NoExistePartidosParaEsaFechaException e)
             {
@@ -49,7 +49,7 @@ namespace Clase_3_MVC.Web.Controllers
         {
 
             Equipos equipos = new Equipos();
-            List<EquipoViewModel> listEQ = equipos.getEquipos();
+            List<EquipoViewModel> listEQ = equipos.GetEquipos();
             return View(listEQ);
         }
 
@@ -63,7 +63,7 @@ namespace Clase_3_MVC.Web.Controllers
                 throw new ArgumentNullException(nameof(collection));
             }
 
-            ISEquipo.agregarNuevoPartido(collection);
+            ISEquipo.AgregarNuevoPartido(collection);
             return RedirectToAction(nameof(Lista));
 
         }

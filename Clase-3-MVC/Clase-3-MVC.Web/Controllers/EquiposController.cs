@@ -9,34 +9,58 @@ namespace Clase_3_MVC.Web.Controllers
     public class EquiposController : Controller
     {
 
-        IServicioEquipo IServicioEq;
+        IServicioEquipo _servicioEquipo;
 
-        public EquiposController(IServicioEquipo Ieq)
+        public EquiposController(IServicioEquipo servicioEquipo)
         {
-            IServicioEq = Ieq;
+            _servicioEquipo = servicioEquipo;
+        }
+
+        public IActionResult Lista()
+        {
+            List<EquipoViewModel> listEquipo = _servicioEquipo.ObtenerTodos();
+            return View(listEquipo);
         }
 
         // GET: EquiposController
         public ActionResult Nuevo()//me devuelve de la carpeta Equipos
                                    //la vista Nuevo por defecto
         {
-            List<string> paises = IServicioEq.obtenerPaises();
+            List<string> paises = _servicioEquipo.ObtenerPaises();
             return View(paises);
         }
 
-        // GET: EquiposController/crear
-        public ActionResult crear(EquipoViewModel equipoNuevo)
+        [HttpPost]
+        public ActionResult Nuevo(EquipoViewModel equipoNuevo)
         {
-            IServicioEq.agregarEquipo(equipoNuevo);
+            _servicioEquipo.AgregarEquipo(equipoNuevo);
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Editar(int id)
+        {
+            List<string> paises = _servicioEquipo.ObtenerPaises();
+            ViewBag.TodosPaises = paises;
+
+            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(id);
+            return View(equipo);
+        }
+
+
+        [HttpPost]
+        public ActionResult Editar(EquipoViewModel equipoNuevo)
+        {
+            _servicioEquipo.Editar(equipoNuevo.Id, equipoNuevo);
+
+            return RedirectToAction(nameof(Lista));
         }
 
         [HttpGet]
         [Route("Equipos/info/{nombre?}")]
-        public ActionResult info(string nombre)
+        public ActionResult Info(string nombre)
         {
 
-            EquipoViewModel equipo = IServicioEq.devolverEquipo(nombre);
+            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(nombre);
             return View(equipo);
 
         }
