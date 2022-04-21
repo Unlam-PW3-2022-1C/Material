@@ -33,17 +33,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Equipos" asp-action="Nuevo">Nuevo Equipo</a>
                         </li>
+                       
                     </ul>
                 </div>
             </div>
         </nav>
 
     </header>
-    <div class="container">
-        <main role="main" class="pb-3" style="auto;">
+    
+        <main class="principal">
             @RenderBody()<!--que son esos render-->
         </main>
-    </div>
+    
 
     <footer class="border-top footer text-muted">
         <div class="container">

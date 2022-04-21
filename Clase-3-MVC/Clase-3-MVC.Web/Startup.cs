@@ -29,6 +29,7 @@ namespace Clase_3_MVC.Web
             services.Add(new ServiceDescriptor(typeof(Servicio.IServicioEquipo), new ServicioEquipo()));
 
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
