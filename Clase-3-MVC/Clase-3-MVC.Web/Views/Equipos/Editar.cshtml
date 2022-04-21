@@ -1,0 +1,53 @@
+﻿@model EquipoViewModel
+@{
+    ViewData["Title"] = $"Editando Equipo {Model.Nombre}";
+}
+<div class="contenedorSuperior">
+
+    <div class="contenedorFormNuevoPartido">
+
+        <form method="post" action="/Equipos/editar" class="formularioNP" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <table>
+
+                <tr>
+                    <th><label for="Nombre">Nombre</label></th>
+                    <th><input type="text" name="Nombre" id="visitante" placeholder="Nombre del Equipo" value="@Model.Nombre" /> </th>
+
+                </tr>
+                <tr>
+                    <th> <label for="PaisEquipo">Pais</label></th>
+
+                    <th>
+                        <select id="Pais" name="Pais" style="width:200px">
+                            @foreach (var pais in ViewBag.TodosPaises)
+                            {
+                                if (pais == Model.Pais)
+                                {
+                                    <option selected="selected" value="@pais">@pais</option>
+                                }
+                                else
+                                {
+                                    <option value="@pais">@pais</option>
+                                }
+                            }
+
+                        </select>
+                    </th>
+
+                </tr>
+
+            </table>
+
+            <div>
+                <input type="submit" class="btn btn-dark" value="Guardar" />
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>

@@ -16,6 +16,12 @@ namespace Clase_3_MVC.Web.Controllers
             _servicioEquipo = servicioEquipo;
         }
 
+        public IActionResult Lista()
+        {
+            List<EquipoViewModel> listEquipo = _servicioEquipo.ObtenerTodos();
+            return View(listEquipo);
+        }
+
         // GET: EquiposController
         public ActionResult Nuevo()//me devuelve de la carpeta Equipos
                                    //la vista Nuevo por defecto
@@ -24,11 +30,29 @@ namespace Clase_3_MVC.Web.Controllers
             return View(paises);
         }
 
-        // GET: EquiposController/crear
-        public ActionResult Crear(EquipoViewModel equipoNuevo)
+        [HttpPost]
+        public ActionResult Nuevo(EquipoViewModel equipoNuevo)
         {
             _servicioEquipo.AgregarEquipo(equipoNuevo);
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Editar(int id)
+        {
+            List<string> paises = _servicioEquipo.ObtenerPaises();
+            ViewBag.TodosPaises = paises;
+
+            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(id);
+            return View(equipo);
+        }
+
+
+        [HttpPost]
+        public ActionResult Editar(EquipoViewModel equipoNuevo)
+        {
+            _servicioEquipo.Editar(equipoNuevo.Id, equipoNuevo);
+
+            return RedirectToAction(nameof(Lista));
         }
 
         [HttpGet]
@@ -36,7 +60,7 @@ namespace Clase_3_MVC.Web.Controllers
         public ActionResult Info(string nombre)
         {
 
-            EquipoViewModel equipo = _servicioEquipo.devolverEquipo(nombre);
+            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(nombre);
             return View(equipo);
 
         }

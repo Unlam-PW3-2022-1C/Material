@@ -7,8 +7,10 @@ namespace Clase_3_MVC.Web.Servicio
 
     {
         void AgregarEquipo(EquipoViewModel equipoNuevo);
-
-        EquipoViewModel devolverEquipo(string nombre);
+        EquipoViewModel DevolverEquipo(string nombre);
+        EquipoViewModel DevolverEquipo(int id);
         List<string> ObtenerPaises();
+        List<EquipoViewModel> ObtenerTodos();
+        EquipoViewModel Editar(int id, EquipoViewModel equipoNuevo);
     }
 }
