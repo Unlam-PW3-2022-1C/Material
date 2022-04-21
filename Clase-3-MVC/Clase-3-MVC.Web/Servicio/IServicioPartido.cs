@@ -6,8 +6,8 @@ namespace Clase_3_MVC.Web.Servicio
 {
     public interface IServicioPartido
     {
-        List<PartidoViewModel> obtenerPartidos();
-        List<PartidoViewModel> consultarFecha(IFormCollection colection);
-        void agregarNuevoPartido(IFormCollection collection);
+        List<PartidoViewModel> ObtenerPartidos();
+        List<PartidoViewModel> ConsultarFecha(IFormCollection colection);
+        void AgregarNuevoPartido(IFormCollection collection);
     }
 }

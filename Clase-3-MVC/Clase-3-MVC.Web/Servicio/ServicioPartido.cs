@@ -12,19 +12,19 @@ namespace Clase_3_MVC.Web.Servicio
         Equipos equipos = new Equipos();
 
 
-        public List<PartidoViewModel> obtenerPartidos()
+        public List<PartidoViewModel> ObtenerPartidos()
         {
-            return partidos.getPartidos();
+            return partidos.GetPartidos();
         }
-        public void agregarNuevoPartido(PartidoViewModel partido)
+        public void AgregarNuevoPartido(PartidoViewModel partido)
         {
             partidos.addPartido(partido);
         }
 
-        public List<PartidoViewModel> consultarFecha(IFormCollection collection)
+        public List<PartidoViewModel> ConsultarFecha(IFormCollection collection)
         {
 
-            List<PartidoViewModel> partidos = obtenerPartidos();
+            List<PartidoViewModel> partidos = ObtenerPartidos();
 
             DateTime fechaElegida = Convert.ToDateTime(collection["Fecha"]);
             List<PartidoViewModel> partidosDeEsaFecha = new List<PartidoViewModel>();
@@ -51,20 +51,20 @@ namespace Clase_3_MVC.Web.Servicio
 
         }
 
-        public void agregarNuevoPartido(IFormCollection collection)
+        public void AgregarNuevoPartido(IFormCollection collection)
 
 
         {
 
-            List<PartidoViewModel> partidos = obtenerPartidos();
+            List<PartidoViewModel> partidos = ObtenerPartidos();
 
             String nombreLocal = collection["NombreLocal"];
             String nombreVisitante = collection["NombreVisitante"];
 
 
 
-            EquipoViewModel equipoLocal = obtenerEquipoLocal(nombreLocal);
-            EquipoViewModel equipoVisitante = obtenerEquipoVisitante(nombreVisitante);
+            EquipoViewModel equipoLocal = ObtenerEquipoLocal(nombreLocal);
+            EquipoViewModel equipoVisitante = ObtenerEquipoVisitante(nombreVisitante);
 
 
             PartidoViewModel partidoNuevo = new PartidoViewModel();
@@ -79,11 +79,11 @@ namespace Clase_3_MVC.Web.Servicio
             partidos.Add(partidoNuevo);
         }
 
-        private EquipoViewModel obtenerEquipoVisitante(string nombreVisitante)
+        private EquipoViewModel ObtenerEquipoVisitante(string nombreVisitante)
         {
 
 
-            foreach (var equipo in equipos.getEquipos())
+            foreach (var equipo in equipos.GetEquipos())
             {
                 if (equipo.Nombre == nombreVisitante)
                 {
@@ -97,10 +97,10 @@ namespace Clase_3_MVC.Web.Servicio
 
         }
 
-        private EquipoViewModel obtenerEquipoLocal(string nombreLocal)
+        private EquipoViewModel ObtenerEquipoLocal(string nombreLocal)
         {
 
-            foreach (var equipo in equipos.getEquipos())
+            foreach (var equipo in equipos.GetEquipos())
             {
                 if (equipo.Nombre == nombreLocal)
                 {
