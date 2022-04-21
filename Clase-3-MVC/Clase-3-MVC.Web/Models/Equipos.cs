@@ -31,7 +31,17 @@ namespace Clase_3_MVC.Web.Models
             return _equipos;
         }
 
+        public EquipoViewModel GetEquipo(int id)
+        {
 
+            foreach (EquipoViewModel equipo in _equipos)
+            {
+                if (equipo.Id == id) {
+                    return equipo;
+                }
+            }
+            return null;
+        }
         
     }
 }

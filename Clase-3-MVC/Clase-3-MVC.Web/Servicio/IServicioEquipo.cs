@@ -12,5 +12,6 @@ namespace Clase_3_MVC.Web.Servicio
         List<string> ObtenerPaises();
         List<EquipoViewModel> ObtenerTodos();
         EquipoViewModel Editar(int id, EquipoViewModel equipoNuevo);
+        void EliminarEquipo(int id);
     }
 }

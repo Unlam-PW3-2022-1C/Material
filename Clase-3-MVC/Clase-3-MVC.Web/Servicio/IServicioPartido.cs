@@ -9,5 +9,7 @@ namespace Clase_3_MVC.Web.Servicio
         List<PartidoViewModel> ObtenerPartidos();
         List<PartidoViewModel> ConsultarFecha(IFormCollection colection);
         void AgregarNuevoPartido(IFormCollection collection);
+        PartidoViewModel ObtenerPartido(int id);
+        void EditarPartido(IFormCollection colection);
     }
 }

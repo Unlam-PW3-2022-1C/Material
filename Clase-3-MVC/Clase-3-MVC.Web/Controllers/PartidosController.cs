@@ -13,11 +13,11 @@ namespace Clase_3_MVC.Web.Controllers
     public class PartidosController : Controller
     {
 
-        private readonly IServicioPartido ISEquipo;
+        private readonly IServicioPartido ISePartidos;
 
         public PartidosController(IServicioPartido servicioEquipo)
         {
-            ISEquipo = servicioEquipo;
+            ISePartidos = servicioEquipo;
 
         }
 
@@ -25,7 +25,7 @@ namespace Clase_3_MVC.Web.Controllers
         // GET: PartidosController
         public IActionResult Lista()
         {
-            List<PartidoViewModel> listPartidos = ISEquipo.ObtenerPartidos();
+            List<PartidoViewModel> listPartidos = ISePartidos.ObtenerPartidos();
             return View(listPartidos);
         }
 
@@ -34,7 +34,7 @@ namespace Clase_3_MVC.Web.Controllers
             List<PartidoViewModel> partidosDeEseDia;
             try
             {
-                partidosDeEseDia = ISEquipo.ConsultarFecha(colection);
+                partidosDeEseDia = ISePartidos.ConsultarFecha(colection);
             }
             catch (NoExistePartidosParaEsaFechaException e)
             {
@@ -63,15 +63,33 @@ namespace Clase_3_MVC.Web.Controllers
                 throw new ArgumentNullException(nameof(collection));
             }
 
-            ISEquipo.AgregarNuevoPartido(collection);
+            ISePartidos.AgregarNuevoPartido(collection);
             return RedirectToAction(nameof(Lista));
 
         }
 
-        // GET: PartidosController/NuevoBindingManual
-        public ActionResult NuevoBindingManual()//ver binding
-        {
-            return View();
+        public IActionResult FormEdit(int id) {
+            Equipos equipos = new Equipos();
+
+            ViewBag.partido = (PartidoViewModel)ISePartidos.ObtenerPartido(id);
+            ViewBag.equipos = (List<EquipoViewModel>)equipos.GetEquipos();
+            DateTime fecha = ViewBag.partido.Fecha;
+
+            string sfecha = fecha.ToString("yyyy-MM-ddThh:ss");
+
+
+            ViewBag.fecha = sfecha;
+
+            return View("FormularioEdicionPartido");
+
+        }
+
+        public IActionResult Edit(IFormCollection colection) {
+
+
+            ISePartidos.EditarPartido(colection);
+            return RedirectToAction(nameof(Lista));
+        
         }
 
 

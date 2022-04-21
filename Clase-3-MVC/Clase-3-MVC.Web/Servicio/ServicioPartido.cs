@@ -69,8 +69,8 @@ namespace Clase_3_MVC.Web.Servicio
 
             PartidoViewModel partidoNuevo = new PartidoViewModel();
 
-            partidoNuevo.local = equipoLocal;
-            partidoNuevo.visitante = equipoVisitante;
+            partidoNuevo.Local = equipoLocal;
+            partidoNuevo.Visitante = equipoVisitante;
             partidoNuevo.resultado = "-/-";
             partidoNuevo.Lugar = collection["Estadio"];
             partidoNuevo.Fecha = Convert.ToDateTime(collection["fecha"]);
@@ -111,11 +111,44 @@ namespace Clase_3_MVC.Web.Servicio
             return null;
         }
 
+        public PartidoViewModel ObtenerPartido(int id)
+        {
+            foreach (var partido in partidos.GetPartidos())
+            {
+                if (partido.Id == id)
+                {
+                    return partido;
+                }
+
+            }
+
+            return null;
+        }
+
+        public void EditarPartido(IFormCollection colection)
+        {
+            int idLocal = int.Parse(colection["IdLocal"]);
+            int idVisitante = int.Parse(colection["IdVisitante"]);
+            int idPartido = int.Parse(colection["Id"]);
+
+            EquipoViewModel equipoLocal = equipos.GetEquipo(idLocal);
+            EquipoViewModel equipoVisitante = equipos.GetEquipo(idVisitante);
 
 
+            foreach (PartidoViewModel partidoAModificar in partidos.GetPartidos())
+            {
+                if (partidoAModificar.Id == idPartido)
+                {
+                    partidoAModificar.Local = equipoLocal;
+                    partidoAModificar.Visitante = equipoVisitante;
+                    partidoAModificar.Lugar = colection["Estadio"];
+                    partidoAModificar.Fecha = Convert.ToDateTime(colection["Fecha"]);
 
 
+                }
+            }
 
+        }
     }
 
 

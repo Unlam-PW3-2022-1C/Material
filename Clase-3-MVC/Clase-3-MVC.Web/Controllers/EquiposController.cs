@@ -65,6 +65,15 @@ namespace Clase_3_MVC.Web.Controllers
 
         }
 
+
+        [HttpGet]
+        public IActionResult Eliminar(int id) {
+
+            _servicioEquipo.EliminarEquipo(id);
+
+            return RedirectToAction(nameof(Lista));
+        }
+
       
     }
 }

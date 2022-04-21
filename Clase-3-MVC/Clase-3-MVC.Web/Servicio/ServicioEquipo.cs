@@ -9,6 +9,12 @@ namespace Clase_3_MVC.Web.Servicio
         static Equipos equipos = new Equipos();
         List<EquipoViewModel> ListaEQ = equipos.GetEquipos();
 
+        public ServicioEquipo()
+        {
+        }
+
+       
+
         public void AgregarEquipo(EquipoViewModel equipoNuevo)
         {
             int id = ObtenerIdMasUno();
@@ -43,6 +49,22 @@ namespace Clase_3_MVC.Web.Servicio
             equipoActual.Pais = equipoNuevo.Pais;
 
             return equipoActual;
+        }
+
+        public void EliminarEquipo(int id)
+        {
+
+            ListaEQ.Remove(DevolverEquipo(id));
+            Partidos partidos = new Partidos();
+            List<PartidoViewModel> listPartidos = partidos.GetPartidos();
+            for (int i = 0; i < listPartidos.Count; i++) {
+
+                if (listPartidos[i].Local.Id == id || listPartidos[i].Visitante.Id == id) {
+                    listPartidos.Remove(listPartidos[i]);
+                    
+                }
+            }
+
         }
 
         public List<string> ObtenerPaises()

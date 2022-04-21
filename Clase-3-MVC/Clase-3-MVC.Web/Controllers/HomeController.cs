@@ -23,7 +23,8 @@ namespace Clase_3_MVC.Web.Controllers
             return View();
         }
 
-        
+      //Que se pueda editar los partidos
+      
 
        
     }

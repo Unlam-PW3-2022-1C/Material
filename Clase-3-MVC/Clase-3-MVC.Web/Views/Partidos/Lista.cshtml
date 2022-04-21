@@ -5,12 +5,15 @@
 
 
 <div class="contenedor-tabla">
+
     <div class="contenedor-filtro">
         <form method="post" action="/Partidos/DelDia">
             <button type="submit" class="btn btn-dark"><b>Filtrar partidos por fecha</b></button>
             <input type="date" style="height:35px" name="Fecha" />
         </form>
     </div>
+
+    <div>
     <table class="table table-dark">
         <thead>
             <tr>
@@ -21,6 +24,8 @@
                 <th scope="col">Fecha</th>
                 <th scope="col">Horario</th>
                 <th scope="col">Estadio</th>
+                <th scope="col">Editar</th>
+
 
             </tr>
         </thead>
@@ -29,17 +34,19 @@
             {
                 <tr>
                     <th scope="row">@partido.Id</th>
-                    <td><a href="/Equipos/info/@partido.local.Nombre">@partido.local.Nombre</a></td>
-                    <td><a href="/Equipos/info/@partido.visitante.Nombre">@partido.visitante.Nombre</a></td>
+                    <td><a href="/Equipos/info/@partido.Local.Nombre">@partido.Local.Nombre</a></td>
+                    <td><a href="/Equipos/info/@partido.Visitante.Nombre">@partido.Visitante.Nombre</a></td>
                     <td>@partido.resultado</td>
                     <td>@partido.Fecha.ToString("dd/MM/yy")</td>
                     <td>@partido.Fecha.ToString("hh:mm") pm</td>
                     <td>@partido.Lugar</td>
+                    <td><a href="/Partidos/FormEdit/@partido.Id">Editar</a></td>
+
                 </tr>
             }
         </tbody>
     </table>
-
+    </div>
 </div>
 
 

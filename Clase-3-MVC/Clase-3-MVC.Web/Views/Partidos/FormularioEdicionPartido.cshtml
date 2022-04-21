@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Nuevo Partido";
+}
+<div class="contenedorSuperior">
+
+    <div class="contenedorFormNuevoPartido">
+
+        <form method="post" action="/partidos/edit" class="formularioNP">
+            @Html.AntiForgeryToken()
+            <table>
+               <input type="hidden" value="@ViewBag.partido.Id" name="Id" />
+
+                <tr>
+
+                    <th> <label for="equipoLocal" style="width:200px">Elige el Equipo Local:</label></th>
+
+                    <th>
+                        <select id="equipoLocal" name="IdLocal" style="width:200px">
+
+                            <option value="@ViewBag.partido.Local.Id" selected>@ViewBag.partido.Local.Nombre</option>
+
+                            @foreach (var equipo in ViewBag.equipos)
+                            {
+
+                                <option value="@equipo.Id">@equipo.Nombre</option>
+                            }
+
+                        </select>
+                    </th>
+
+
+                </tr>
+                <tr>
+
+                    <th> <label for="equipoVisitante" style="width:200px">Elige el Equipo Visitante:</label></th>
+
+                    <th>
+                        <select id="equipoVisitante" name="IdVisitante" style="width:200px">
+                            
+                            <option value="@ViewBag.partido.Visitante.Id" selected>@ViewBag.partido.Visitante.Nombre</option>
+
+                            @foreach (var equipo in ViewBag.equipos)
+                            {
+                                <option value="@equipo.Id">@equipo.Nombre</option>
+                            }
+
+                        </select>
+                    </th>
+
+
+
+
+                </tr>
+                <tr>
+                    <th> <label for="FH">Fecha y Hora</label></th>
+                    <th><input type="datetime-local" min="2000-01-01" max="2030-12-31" value="@ViewBag.Fecha" name="Fecha" id="FH"> </th>
+                </tr>
+                    <tr>
+                    <th> <label for="estadio">Estadio</label></th>
+                    <th> <input type="text" name="Estadio" id="estadio" value="@ViewBag.partido.Lugar" /> </th>
+                </tr>
+
+
+            </table>
+
+            <div>
+                <input type="submit" class="btn btn-dark" value="Guardar" />
+                <input type="reset" class="btn btn-dark" value="borrar todo" />
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>
