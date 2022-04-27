@@ -6,12 +6,12 @@
     Admin Section
 </div>
 <div>
-    asdsa
+    @await RenderSectionAsync("TopContent", required: false)
 </div>
 <div style="margin-top:50px;">
     @RenderBody()
 </div>
 <div style="margin-top:50px;">
-   asdad
+    @await RenderSectionAsync("Footer", required: false)
     Copyright PW3 - 2022
 </div>

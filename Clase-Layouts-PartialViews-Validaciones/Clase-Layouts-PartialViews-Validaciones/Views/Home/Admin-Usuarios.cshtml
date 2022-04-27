@@ -5,6 +5,12 @@
 {
 <h2>Admin Usuarios</h2>
 }
+<div>
+    Usuario con mas puntos:
+    <partial name="_pvLinkUsuario" model="@("usuario 5")" />
+</div>
+
+
 
 <div>
     <table>
@@ -15,7 +21,9 @@
         @for (int i = 0; i < 10; i++)
         {
             <tr>
-                <td>Usuario @i</td>
+                <td>
+                    <partial name="_pvLinkUsuario" model="@($"usuario {i}")" />
+                </td>
                 <td>email@(i)@@gmail@(i).com</td>
             </tr>
         }
