@@ -21,6 +21,7 @@
                 <th scope="col">Fecha</th>
                 <th scope="col">Horario</th>
                 <th scope="col">Estadio</th>
+                <th scope="col">Editar</th>
 
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                     <td>@partido.Fecha.ToString("dd/MM/yy")</td>
                     <td>@partido.Fecha.ToString("hh:mm") pm</td>
                     <td>@partido.Lugar</td>
+                    <td><a href="/Partidos/editar/@partido.Id">Editar</a></td>
                 </tr>
             }
         </tbody>

@@ -1,0 +1,38 @@
+﻿@model Partido
+@{ 
+    ViewData["Title"] = "Editar Partido";
+}
+<div class="contenedorSuperior">
+
+    <div class="contenedorFormNuevoPartido">
+
+        <form method="post" action="/Partidos/editar" class="formularioNP" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <table>
+
+
+                <tr>
+
+
+                    <th><label for="Fecha">Fecha y Hora</label></th>
+                    <th><input type="datetime-local" name="Fecha" id="Fecha" /></th>
+
+                    <th> <label for="Lugar">Estadio</label></th>
+                    <th> <input type="text" name="Lugar" id="Lugar" placeholder="Estadio" /> </th>
+
+                </tr>
+
+            </table>
+
+            <div>
+                <input type="submit" class="btn btn-dark" value="Guardar" />
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>

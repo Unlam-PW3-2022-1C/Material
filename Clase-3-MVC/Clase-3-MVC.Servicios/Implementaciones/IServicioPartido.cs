@@ -9,9 +9,9 @@ namespace Clase_3_MVC.Servicios
     public class IServicioPartido : ServicioPartido
     {
 
-        ListaPartidos partidos = new ListaPartidos();
-        ListaEquipos equipos = new ListaEquipos();
-
+        static ListaPartidos partidos = new ListaPartidos();
+        List<Partido> ListPartidos = partidos.GetPartidos();
+        static ListaEquipos equipos = new ListaEquipos();
 
         public List<Partido> ObtenerPartidos()
         {
@@ -112,11 +112,20 @@ namespace Clase_3_MVC.Servicios
             return null;
         }
 
+        public Partido Editar(int id, DateTime fecha, string lugar)
+        {
+            Partido partidoAhora = ObtenerPartidoPorId(id);
+            partidoAhora.Fecha = fecha;
+            partidoAhora.Lugar = lugar;
 
+            return partidoAhora;
+        }
 
-
-
-
+        public Partido ObtenerPartidoPorId(int id)
+        {
+            Partido partido = ListPartidos.Find(o => o.Id == id);
+            return partido;
+        }
     }
 
 

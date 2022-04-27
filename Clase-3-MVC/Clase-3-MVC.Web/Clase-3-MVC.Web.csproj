@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Clase-3-MVC.Servicios\Clase-3-MVC.Servicios.csproj" />
-    <ProjectReference Include="..\Entidades\Clase-3-MVC.Entidades.csproj" />
   </ItemGroup>
 
 </Project>
