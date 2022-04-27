@@ -91,7 +91,12 @@ namespace Clase_3_MVC.Web.Controllers
             return RedirectToAction(nameof(Lista));
         }
 
-
+        public ActionResult EliminarPorIdEquipo(IFormCollection collection)
+        {
+            int id = Int32.Parse(collection["idEquipo"]);
+            _servicioPartido.EliminarPorIdDeEquipo(id);
+            return RedirectToAction(nameof(Lista));
+        }
 
     }
 }

@@ -8,10 +8,10 @@ namespace Clase_3_MVC.Servicios
 {
     public class IServicioPartido : ServicioPartido
     {
-
         static ListaPartidos partidos = new ListaPartidos();
-        List<Partido> ListPartidos = partidos.GetPartidos();
+        List<Partido> listPartidos = partidos.GetPartidos();
         static ListaEquipos equipos = new ListaEquipos();
+        List<Equipo> listEquipos = equipos.GetEquipos();
 
         public List<Partido> ObtenerPartidos()
         {
@@ -123,8 +123,14 @@ namespace Clase_3_MVC.Servicios
 
         public Partido ObtenerPartidoPorId(int id)
         {
-            Partido partido = ListPartidos.Find(o => o.Id == id);
+            Partido partido = listPartidos.Find(o => o.Id == id);
             return partido;
+        }
+
+        public void EliminarPorIdDeEquipo(int id)
+        {
+            Equipo equipo = listEquipos.Find(o => o.Id == id);
+            listPartidos.RemoveAll(o => o.local == equipo || o.visitante == equipo);
         }
     }
 

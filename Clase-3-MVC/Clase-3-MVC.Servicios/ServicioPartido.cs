@@ -12,5 +12,6 @@ namespace Clase_3_MVC.Servicios
         List<Partido> ConsultarFecha(IFormCollection colection);
         void AgregarNuevoPartido(IFormCollection collection);
         Partido Editar(int id, DateTime fecha, string lugar);
+        void EliminarPorIdDeEquipo(int id);
     }
 }
