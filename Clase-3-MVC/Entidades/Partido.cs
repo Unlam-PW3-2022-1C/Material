@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Clase_3_MVC.Web.Models
+namespace Clase_3_MVC.Entidades
 {
-    public class PartidoViewModel
+    public class Partido
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public string Lugar { get; set; }
-        public EquipoViewModel local { get; set; }
-        public EquipoViewModel visitante { get; set; }
+        public Equipo local { get; set; }
+        public Equipo visitante { get; set; }
         public string resultado { get; set; }
     }
 }

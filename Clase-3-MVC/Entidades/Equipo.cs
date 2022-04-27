@@ -1,6 +1,6 @@
-﻿namespace Clase_3_MVC.Web.Models
+﻿namespace Clase_3_MVC.Entidades
 {
-    public class EquipoViewModel
+    public class Equipo
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

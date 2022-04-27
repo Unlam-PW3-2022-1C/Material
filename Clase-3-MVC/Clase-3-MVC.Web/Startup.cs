@@ -1,4 +1,4 @@
-using Clase_3_MVC.Web.Servicio;
+using Clase_3_MVC.Servicios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +25,8 @@ namespace Clase_3_MVC.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.Add(new ServiceDescriptor(typeof(Servicio.ServicioPartido), new IServicioPartido()));
-            services.Add(new ServiceDescriptor(typeof(Servicio.ServicioEquipo), new IServicioEquipo()));
+            services.Add(new ServiceDescriptor(typeof(ServicioPartido), new IServicioPartido()));
+            services.Add(new ServiceDescriptor(typeof(ServicioEquipo), new IServicioEquipo()));
 
 
         }

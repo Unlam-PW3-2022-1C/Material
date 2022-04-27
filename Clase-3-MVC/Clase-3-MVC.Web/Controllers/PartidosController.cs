@@ -1,6 +1,5 @@
-﻿using Clase_3_MVC.Web.Models;
-using Clase_3_MVC.Web.Servicio;
-
+﻿using Clase_3_MVC.Entidades;
+using Clase_3_MVC.Servicios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,13 +24,13 @@ namespace Clase_3_MVC.Web.Controllers
         // GET: PartidosController
         public IActionResult Lista()
         {
-            List<PartidoViewModel> listPartidos = ISEquipo.ObtenerPartidos();
+            List<Partido> listPartidos = ISEquipo.ObtenerPartidos();
             return View(listPartidos);
         }
 
         public IActionResult DelDia(IFormCollection colection)
         {
-            List<PartidoViewModel> partidosDeEseDia;
+            List<Partido> partidosDeEseDia;
             try
             {
                 partidosDeEseDia = ISEquipo.ConsultarFecha(colection);
@@ -48,8 +47,8 @@ namespace Clase_3_MVC.Web.Controllers
         public ActionResult FormularioNuevoPartido()
         {
 
-            Equipos equipos = new Equipos();
-            List<EquipoViewModel> listEQ = equipos.GetEquipos();
+            ListaEquipos equipos = new ListaEquipos();
+            List<Equipo> listEQ = equipos.GetEquipos();
             return View(listEQ);
         }
 
