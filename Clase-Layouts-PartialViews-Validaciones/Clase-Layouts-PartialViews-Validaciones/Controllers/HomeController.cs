@@ -33,5 +33,11 @@ namespace Clase_Layouts_PartialViews_Validaciones.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Route("/home/Admin-Usuarios")]
+        public IActionResult AdminUsuarios()
+        {
+            return View("Admin-Usuarios");
+        }
     }
 }
