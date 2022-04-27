@@ -9,9 +9,9 @@ namespace Clase_3_MVC.Web.Controllers
     public class EquiposController : Controller
     {
 
-        IServicioEquipo _servicioEquipo;
+        ServicioEquipo _servicioEquipo;
 
-        public EquiposController(IServicioEquipo servicioEquipo)
+        public EquiposController(ServicioEquipo servicioEquipo)
         {
             _servicioEquipo = servicioEquipo;
         }

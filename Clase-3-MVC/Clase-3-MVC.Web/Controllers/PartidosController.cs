@@ -13,9 +13,9 @@ namespace Clase_3_MVC.Web.Controllers
     public class PartidosController : Controller
     {
 
-        private readonly IServicioPartido ISEquipo;
+        private readonly ServicioPartido ISEquipo;
 
-        public PartidosController(IServicioPartido servicioEquipo)
+        public PartidosController(ServicioPartido servicioEquipo)
         {
             ISEquipo = servicioEquipo;
 

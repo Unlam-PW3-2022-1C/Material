@@ -25,8 +25,8 @@ namespace Clase_3_MVC.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.Add(new ServiceDescriptor(typeof(Servicio.IServicioPartido), new ServicioPartido()));
-            services.Add(new ServiceDescriptor(typeof(Servicio.IServicioEquipo), new ServicioEquipo()));
+            services.Add(new ServiceDescriptor(typeof(Servicio.ServicioPartido), new IServicioPartido()));
+            services.Add(new ServiceDescriptor(typeof(Servicio.ServicioEquipo), new IServicioEquipo()));
 
 
         }
