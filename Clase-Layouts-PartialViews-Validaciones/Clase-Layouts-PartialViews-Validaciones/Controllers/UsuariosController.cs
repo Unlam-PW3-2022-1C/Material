@@ -16,8 +16,12 @@ namespace Clase_Layouts_PartialViews_Validaciones.Controllers
         [HttpPost]
         public IActionResult Nuevo(Models.Usuario usuario)
         {
-            _listaUsuarios.Add(usuario);
-            return RedirectToAction(nameof(Lista));
+            if (ModelState.IsValid)
+            {
+                _listaUsuarios.Add(usuario);
+                return RedirectToAction(nameof(Lista));
+            }
+            return View(usuario);
         }
         public IActionResult Lista()
         {
