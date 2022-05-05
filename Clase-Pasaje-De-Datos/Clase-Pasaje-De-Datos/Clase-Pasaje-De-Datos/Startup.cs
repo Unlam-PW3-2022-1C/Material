@@ -1,5 +1,7 @@
+using Clase_Pasaje_De_Datos.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,16 @@ namespace Clase_Pasaje_De_Datos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+                {
+                    options.Cookie.Name = "MiAplicacion";
+                    options.IdleTimeout = TimeSpan.FromSeconds(5);
+                }  
+            );
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISessionHelper, SessionHelper>();
+
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -49,6 +61,7 @@ namespace Clase_Pasaje_De_Datos
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

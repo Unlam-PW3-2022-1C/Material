@@ -4,6 +4,7 @@
 @{
 }
 <form action="/CalculadorDeGastos/Index" method="post">
+    <h3>Ultimo mes calculado: @ViewData["UltimoMes"]</h3>
     @*Ejemplo ViewBag*@
     <h3>Mes actual @ViewBag.MesActual</h3>
     <select name="mes">
