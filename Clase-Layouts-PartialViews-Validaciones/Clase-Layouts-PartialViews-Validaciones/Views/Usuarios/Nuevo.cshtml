@@ -1,0 +1,29 @@
+﻿@model Clase_Layouts_PartialViews_Validaciones.Models.Usuario
+@{
+    Layout = "_AdminLayout";
+}
+@section Footer
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
+    <form method="post" action="/usuarios/Nuevo">
+
+        <div>
+            Nombre: <input asp-for="Nombre"/>
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div>
+            AvatarURL: <input asp-for="AvatarURL" />
+            <span asp-validation-for="AvatarURL" class="text-danger"></span>
+        </div>
+        <div>
+            Email: <input asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            Puntos: <input asp-for="Puntos" />
+            <span asp-validation-for="Puntos" class="text-danger"></span>
+        </div>
+        <input type="submit" value="Guardar" />
+    </form>
