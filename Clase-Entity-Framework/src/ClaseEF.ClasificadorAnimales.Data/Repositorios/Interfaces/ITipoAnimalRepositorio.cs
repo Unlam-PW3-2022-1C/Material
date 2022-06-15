@@ -10,5 +10,6 @@ namespace ClaseEF.ClasificadorAnimales.Data.Repositorios
     public interface ITipoAnimalRepositorio
     {
         List<TipoAnimal> ObtenerTodos();
+        void SaveChanges();
     }
 }

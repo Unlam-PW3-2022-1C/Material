@@ -15,5 +15,10 @@ namespace ClaseEF.ClasificadorAnimales.Data.Repositorios
         {
             _Contexto = ctx;
         }
+
+        public void SaveChanges()
+        {
+            _Contexto.SaveChanges();
+        }
     }
 }

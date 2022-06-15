@@ -1,0 +1,18 @@
+﻿@model List<ClaseEF.ClasificadorAnimales.Data.EF.Animal>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Peso</th>
+        <th>Edad</th>
+        <th>Tipo</th>
+    </tr>
+    @foreach (var animal in Model)
+    {
+        <tr>
+            <td>@animal.NombreEspecie</td>
+            <td>@animal.PesoPromedio</td>
+            <td>@animal.EdadPromedio</td>
+            <td>@animal.IdTipoAnimalNavigation.Nombre</td>
+        </tr>
+    }
+</table> 

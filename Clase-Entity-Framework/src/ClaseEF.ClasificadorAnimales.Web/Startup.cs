@@ -29,6 +29,8 @@ namespace ClaseEF.ClasificadorAnimales.Web
             services.AddTransient<_20221CPracticaEFContext>();
             services.AddScoped<ITipoAnimalRepositorio, TipoAnimalRepositorio>();
             services.AddScoped<ITipoAnimalServicio, TipoAnimalServicio>();
+            services.AddScoped<IAnimalRepositorio, AnimalRepositorio>();
+            services.AddScoped<IAnimalServicio, AnimalServicio>();
             
             services.AddControllersWithViews();
         }

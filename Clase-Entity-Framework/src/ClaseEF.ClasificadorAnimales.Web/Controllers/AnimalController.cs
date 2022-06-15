@@ -12,17 +12,38 @@ namespace ClaseEF.ClasificadorAnimales.Web.Controllers
     public class AnimalController : Controller
     {
         ITipoAnimalServicio _tipoAnimalServicio;
-        public AnimalController(ITipoAnimalServicio tipoAnimalServicio)
+        IAnimalServicio _animalServicio;
+        public AnimalController(ITipoAnimalServicio tipoAnimalServicio, IAnimalServicio animalServicio)
         {
             _tipoAnimalServicio = tipoAnimalServicio;
+            _animalServicio = animalServicio;
         }
 
         [HttpGet]
         public ActionResult Alta()
         {
-            List<TipoAnimal> tipoAnimales = _tipoAnimalServicio.ObtenerTodos();
-            ViewBag.TipoAnimales = tipoAnimales;
+            ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Alta(Animal animal)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
+                return View(animal);
+            }
+
+            _animalServicio.Insertar(animal);
+            return RedirectToAction("Lista");
+        }
+
+        [HttpGet]
+        public ActionResult Lista()
+        {
+            //ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
+            return View(_animalServicio.ObtenerTodos());
         }
     }
 }
