@@ -1,3 +1,6 @@
+using ClaseEF.ClasificadorAnimales.Data.EF;
+using ClaseEF.ClasificadorAnimales.Data.Repositorios;
+using ClaseEF.ClasificadorAnimales.Servicios.Servicios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +26,10 @@ namespace ClaseEF.ClasificadorAnimales.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<_20221CPracticaEFContext>();
+            services.AddScoped<ITipoAnimalRepositorio, TipoAnimalRepositorio>();
+            services.AddScoped<ITipoAnimalServicio, TipoAnimalServicio>();
+            
             services.AddControllersWithViews();
         }
 

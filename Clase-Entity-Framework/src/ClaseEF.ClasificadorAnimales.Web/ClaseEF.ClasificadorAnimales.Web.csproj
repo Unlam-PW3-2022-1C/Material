@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClaseEF.ClasificadorAnimales.Data\ClaseEF.ClasificadorAnimales.Data.csproj" />
+    <ProjectReference Include="..\ClaseEF.ClasificadorAnimales.Servicios\ClaseEF.ClasificadorAnimales.Servicios.csproj" />
   </ItemGroup>
 
 </Project>
