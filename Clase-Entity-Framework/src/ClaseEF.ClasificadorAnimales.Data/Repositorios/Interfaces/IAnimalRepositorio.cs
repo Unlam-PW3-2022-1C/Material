@@ -11,6 +11,7 @@ namespace ClaseEF.ClasificadorAnimales.Data.Repositorios
     {
         void Insertar(Animal entidad);
         List<Animal> ObtenerTodos();
+        List<Animal> ObtenerPorTipo(int idTipoAnimal);
         void SaveChanges();
     }
 }

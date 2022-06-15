@@ -19,6 +19,12 @@ namespace ClaseEF.ClasificadorAnimales.Data.Repositorios
             _Contexto.Animals.Add(entidad);
         }
 
+        public List<Animal> ObtenerPorTipo(int idTipoAnimal)
+        {
+            return _Contexto.Animals.Include(o=> o.IdTipoAnimalNavigation)
+                    .Where(o=> o.IdTipoAnimal == idTipoAnimal).ToList();
+        }
+
         public List<Animal> ObtenerTodos()
         {
             return _Contexto.Animals.Include(o=> o.IdTipoAnimalNavigation).ToList();

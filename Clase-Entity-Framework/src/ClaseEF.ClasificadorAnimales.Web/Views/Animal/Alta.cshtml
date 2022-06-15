@@ -13,16 +13,8 @@
         Edad:
         <input type="number" name="EdadPromedio" />
     </div>
-    <div>
-        Tipo Animal:
-        <select name="IdTipoAnimal">
-            <option value="">Tipo Animal</option>
-            @foreach (var tipoAnimal in (List<ClaseEF.ClasificadorAnimales.Data.EF.TipoAnimal>)ViewBag.TipoAnimales)
-            {
-                <option value="@tipoAnimal.IdTipoAnimal">@tipoAnimal.Nombre</option>
-            }
-        </select>
-    </div>
+    <partial name="_pvTipoAnimal.cshtml" model="@ViewBag.TipoAnimales" />
+
     <div>
         <input type="submit" value="Guardar" />
     </div>

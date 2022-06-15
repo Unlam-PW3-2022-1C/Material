@@ -42,7 +42,18 @@ namespace ClaseEF.ClasificadorAnimales.Web.Controllers
         [HttpGet]
         public ActionResult Lista()
         {
-            //ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
+            ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
+            return View(_animalServicio.ObtenerTodos());
+        }
+
+        [HttpPost]
+        public ActionResult Lista(int? IdTipoAnimal)
+        {
+            ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
+            if (IdTipoAnimal.HasValue)
+            {
+                return View(_animalServicio.ObtenerPorTipo(IdTipoAnimal.Value));
+            }
             return View(_animalServicio.ObtenerTodos());
         }
     }

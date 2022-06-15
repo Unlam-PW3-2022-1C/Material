@@ -21,6 +21,11 @@ namespace ClaseEF.ClasificadorAnimales.Servicios.Servicios
             _animalRepositorio.SaveChanges();
         }
 
+        public List<Animal> ObtenerPorTipo(int idTipoAnimal)
+        {
+            return _animalRepositorio.ObtenerPorTipo(idTipoAnimal);
+        }
+
         public List<Animal> ObtenerTodos()
         {
             return _animalRepositorio.ObtenerTodos();

@@ -1,18 +1,23 @@
 ﻿@model List<ClaseEF.ClasificadorAnimales.Data.EF.Animal>
-<table>
-    <tr>
-        <th>Nombre</th>
-        <th>Peso</th>
-        <th>Edad</th>
-        <th>Tipo</th>
-    </tr>
-    @foreach (var animal in Model)
-    {
+<form action="/Animal/Lista" method="post">
+
+    <partial name="_pvTipoAnimal.cshtml" model="@ViewBag.TipoAnimales" />
+    <input type="submit" name="Filtrar" value="Filtrar" />
+    <table>
         <tr>
-            <td>@animal.NombreEspecie</td>
-            <td>@animal.PesoPromedio</td>
-            <td>@animal.EdadPromedio</td>
-            <td>@animal.IdTipoAnimalNavigation.Nombre</td>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>Edad</th>
+            <th>Tipo</th>
         </tr>
-    }
-</table> 
+        @foreach (var animal in Model)
+        {
+            <tr>
+                <td>@animal.NombreEspecie</td>
+                <td>@animal.PesoPromedio</td>
+                <td>@animal.EdadPromedio</td>
+                <td>@animal.IdTipoAnimalNavigation.Nombre</td>
+            </tr>
+        }
+    </table>
+</form>
