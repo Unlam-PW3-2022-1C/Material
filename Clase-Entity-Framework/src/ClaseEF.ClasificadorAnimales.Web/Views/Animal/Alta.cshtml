@@ -1,0 +1,21 @@
+﻿@model ClaseEF.ClasificadorAnimales.Data.EF.Animal
+
+<form action="/Animal/Alta" method="post">
+    <div>
+        Nombre:
+        <input type="text" name="NombreEspecie" />
+    </div>
+    <div>
+        Peso:
+        <input type="number" name="PesoPromedio" />
+    </div>
+    <div>
+        Edad:
+        <input type="number" name="EdadPromedio" />
+    </div>
+    <partial name="_pvTipoAnimal.cshtml" model="@ViewBag.TipoAnimales" />
+    <input type="text" name="OtroTipo" value="" />
+    <div>
+        <input type="submit" value="Guardar" />
+    </div>
+</form>
