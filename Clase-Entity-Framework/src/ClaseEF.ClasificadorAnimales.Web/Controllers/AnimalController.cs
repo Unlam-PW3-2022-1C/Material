@@ -29,10 +29,18 @@ namespace ClaseEF.ClasificadorAnimales.Web.Controllers
         [HttpPost]
         public ActionResult Alta(Animal animal)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && string.IsNullOrEmpty(Request.Form["OtroTipo"]))
             {
                 ViewBag.TipoAnimales = _tipoAnimalServicio.ObtenerTodos();
                 return View(animal);
+            }
+
+            //en caso de que haya ingresado un nuevo tipo, lo agrego a la tabla y asigno al nuevo animal
+            if (!string.IsNullOrEmpty(Request.Form["OtroTipo"]))
+            {
+                TipoAnimal nuevoTipoAnimal = new TipoAnimal() { Nombre = Request.Form["OtroTipo"] };
+                _tipoAnimalServicio.Insertar(nuevoTipoAnimal);
+                animal.IdTipoAnimal = nuevoTipoAnimal.IdTipoAnimal;
             }
 
             _animalServicio.Insertar(animal);

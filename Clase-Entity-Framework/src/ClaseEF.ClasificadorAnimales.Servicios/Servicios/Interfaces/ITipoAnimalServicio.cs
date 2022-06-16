@@ -6,5 +6,6 @@ namespace ClaseEF.ClasificadorAnimales.Servicios.Servicios
     public interface ITipoAnimalServicio
     {
         List<TipoAnimal> ObtenerTodos();
+        void Insertar(TipoAnimal entidad);
     }
 }

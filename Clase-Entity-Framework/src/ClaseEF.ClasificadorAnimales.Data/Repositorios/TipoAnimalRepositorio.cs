@@ -13,6 +13,13 @@ namespace ClaseEF.ClasificadorAnimales.Data.Repositorios
         {
         }
 
+        public void Insertar(TipoAnimal entidad)
+        {
+            int idTipoAnimal = _Contexto.Animals.Max(a => a.IdTipoAnimal) + 1;
+            entidad.IdTipoAnimal = idTipoAnimal;
+            _Contexto.TipoAnimals.Add(entidad);
+        }
+
         public List<TipoAnimal> ObtenerTodos()
         {
             return _Contexto.TipoAnimals.ToList();

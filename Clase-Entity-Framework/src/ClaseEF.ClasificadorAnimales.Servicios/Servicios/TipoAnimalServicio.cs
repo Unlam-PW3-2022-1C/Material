@@ -15,6 +15,13 @@ namespace ClaseEF.ClasificadorAnimales.Servicios.Servicios
         {
             _tipoAnimalRepositorio = tipoAnimalRepositorio;
         }
+
+        public void Insertar(TipoAnimal entidad)
+        {
+            _tipoAnimalRepositorio.Insertar(entidad);
+            _tipoAnimalRepositorio.SaveChanges();
+        }
+
         public List<TipoAnimal> ObtenerTodos()
         {
             return _tipoAnimalRepositorio.ObtenerTodos();
