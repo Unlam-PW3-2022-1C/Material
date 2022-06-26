@@ -1,35 +1,36 @@
-﻿using Clase_3_MVC.Web.Models;
+﻿
+using Clase_3_MVC.Entidades;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 
-namespace Clase_3_MVC.Web.Servicio
+namespace Clase_3_MVC.Servicios
 {
-    public class ServicioPartido : IServicioPartido
+    public class IServicioPartido : ServicioPartido
     {
+        static ListaPartidos partidos = new ListaPartidos();
+        List<Partido> listPartidos = partidos.GetPartidos();
+        static ListaEquipos equipos = new ListaEquipos();
+        List<Equipo> listEquipos = equipos.GetEquipos();
 
-        Partidos partidos = new Partidos();
-        Equipos equipos = new Equipos();
-
-
-        public List<PartidoViewModel> ObtenerPartidos()
+        public List<Partido> ObtenerPartidos()
         {
             return partidos.GetPartidos();
         }
-        public void AgregarNuevoPartido(PartidoViewModel partido)
+        public void AgregarNuevoPartido(Partido partido)
         {
             partidos.addPartido(partido);
         }
 
-        public List<PartidoViewModel> ConsultarFecha(IFormCollection collection)
+        public List<Partido> ConsultarFecha(IFormCollection collection)
         {
 
-            List<PartidoViewModel> partidos = ObtenerPartidos();
+            List<Partido> partidos = ObtenerPartidos();
 
             DateTime fechaElegida = Convert.ToDateTime(collection["Fecha"]);
-            List<PartidoViewModel> partidosDeEsaFecha = new List<PartidoViewModel>();
+            List<Partido> partidosDeEsaFecha = new List<Partido>();
 
-            foreach (PartidoViewModel partido in partidos)
+            foreach (Partido partido in partidos)
             {
 
                 if (partido.Fecha.Year == fechaElegida.Year &&
@@ -56,18 +57,18 @@ namespace Clase_3_MVC.Web.Servicio
 
         {
 
-            List<PartidoViewModel> partidos = ObtenerPartidos();
+            List<Partido> partidos = ObtenerPartidos();
 
             String nombreLocal = collection["NombreLocal"];
             String nombreVisitante = collection["NombreVisitante"];
 
 
 
-            EquipoViewModel equipoLocal = ObtenerEquipoLocal(nombreLocal);
-            EquipoViewModel equipoVisitante = ObtenerEquipoVisitante(nombreVisitante);
+            Equipo equipoLocal = ObtenerEquipoLocal(nombreLocal);
+            Equipo equipoVisitante = ObtenerEquipoVisitante(nombreVisitante);
 
 
-            PartidoViewModel partidoNuevo = new PartidoViewModel();
+            Partido partidoNuevo = new Partido();
 
             partidoNuevo.local = equipoLocal;
             partidoNuevo.visitante = equipoVisitante;
@@ -79,7 +80,7 @@ namespace Clase_3_MVC.Web.Servicio
             partidos.Add(partidoNuevo);
         }
 
-        private EquipoViewModel ObtenerEquipoVisitante(string nombreVisitante)
+        private Equipo ObtenerEquipoVisitante(string nombreVisitante)
         {
 
 
@@ -97,7 +98,7 @@ namespace Clase_3_MVC.Web.Servicio
 
         }
 
-        private EquipoViewModel ObtenerEquipoLocal(string nombreLocal)
+        private Equipo ObtenerEquipoLocal(string nombreLocal)
         {
 
             foreach (var equipo in equipos.GetEquipos())
@@ -111,11 +112,26 @@ namespace Clase_3_MVC.Web.Servicio
             return null;
         }
 
+        public Partido Editar(int id, DateTime fecha, string lugar)
+        {
+            Partido partidoAhora = ObtenerPartidoPorId(id);
+            partidoAhora.Fecha = fecha;
+            partidoAhora.Lugar = lugar;
 
+            return partidoAhora;
+        }
 
+        public Partido ObtenerPartidoPorId(int id)
+        {
+            Partido partido = listPartidos.Find(o => o.Id == id);
+            return partido;
+        }
 
-
-
+        public void EliminarPorIdDeEquipo(int id)
+        {
+            Equipo equipo = listEquipos.Find(o => o.Id == id);
+            listPartidos.RemoveAll(o => o.local == equipo || o.visitante == equipo);
+        }
     }
 
 

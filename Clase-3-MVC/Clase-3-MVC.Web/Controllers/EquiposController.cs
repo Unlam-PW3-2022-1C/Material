@@ -1,5 +1,5 @@
-﻿using Clase_3_MVC.Web.Models;
-using Clase_3_MVC.Web.Servicio;
+﻿using Clase_3_MVC.Entidades;
+using Clase_3_MVC.Servicios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,16 +9,16 @@ namespace Clase_3_MVC.Web.Controllers
     public class EquiposController : Controller
     {
 
-        IServicioEquipo _servicioEquipo;
+        ServicioEquipo _servicioEquipo;
 
-        public EquiposController(IServicioEquipo servicioEquipo)
+        public EquiposController(ServicioEquipo servicioEquipo)
         {
             _servicioEquipo = servicioEquipo;
         }
 
         public IActionResult Lista()
         {
-            List<EquipoViewModel> listEquipo = _servicioEquipo.ObtenerTodos();
+            List<Equipo> listEquipo = _servicioEquipo.ObtenerTodos();
             return View(listEquipo);
         }
 
@@ -31,7 +31,7 @@ namespace Clase_3_MVC.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Nuevo(EquipoViewModel equipoNuevo)
+        public ActionResult Nuevo(Equipo equipoNuevo)
         {
             _servicioEquipo.AgregarEquipo(equipoNuevo);
             return RedirectToAction("Index", "Home");
@@ -42,13 +42,13 @@ namespace Clase_3_MVC.Web.Controllers
             List<string> paises = _servicioEquipo.ObtenerPaises();
             ViewBag.TodosPaises = paises;
 
-            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(id);
+            Equipo equipo = _servicioEquipo.DevolverEquipo(id);
             return View(equipo);
         }
 
 
         [HttpPost]
-        public ActionResult Editar(EquipoViewModel equipoNuevo)
+        public ActionResult Editar(Equipo equipoNuevo)
         {
             _servicioEquipo.Editar(equipoNuevo.Id, equipoNuevo);
 
@@ -60,7 +60,7 @@ namespace Clase_3_MVC.Web.Controllers
         public ActionResult Info(string nombre)
         {
 
-            EquipoViewModel equipo = _servicioEquipo.DevolverEquipo(nombre);
+            Equipo equipo = _servicioEquipo.DevolverEquipo(nombre);
             return View(equipo);
 
         }

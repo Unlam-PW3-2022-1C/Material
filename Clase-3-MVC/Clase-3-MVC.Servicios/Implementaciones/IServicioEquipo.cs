@@ -1,15 +1,16 @@
-﻿using Clase_3_MVC.Web.Models;
+﻿
+using Clase_3_MVC.Entidades;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Clase_3_MVC.Web.Servicio
+namespace Clase_3_MVC.Servicios
 {
-    public class ServicioEquipo : IServicioEquipo
+    public class IServicioEquipo : ServicioEquipo
     {
-        static Equipos equipos = new Equipos();
-        List<EquipoViewModel> ListaEQ = equipos.GetEquipos();
+        static ListaEquipos equipos = new ListaEquipos();
+        List<Equipo> ListaEQ = equipos.GetEquipos();
 
-        public void AgregarEquipo(EquipoViewModel equipoNuevo)
+        public void AgregarEquipo(Equipo equipoNuevo)
         {
             int id = ObtenerIdMasUno();
 
@@ -18,9 +19,9 @@ namespace Clase_3_MVC.Web.Servicio
             ListaEQ.Add(equipoNuevo);
         }
 
-        public EquipoViewModel DevolverEquipo(string nombre)
+        public Equipo DevolverEquipo(string nombre)
         {
-            foreach (EquipoViewModel equipo in ListaEQ)
+            foreach (Equipo equipo in ListaEQ)
             {
                 if (equipo.Nombre == nombre)
                 {
@@ -31,14 +32,14 @@ namespace Clase_3_MVC.Web.Servicio
             return null;
         }
 
-        public EquipoViewModel DevolverEquipo(int id)
+        public Equipo DevolverEquipo(int id)
         {
             return ListaEQ.Find(o => o.Id == id);
         }
 
-        public EquipoViewModel Editar(int id, EquipoViewModel equipoNuevo)
+        public Equipo Editar(int id, Equipo equipoNuevo)
         {
-            EquipoViewModel equipoActual = DevolverEquipo(id);
+            Equipo equipoActual = DevolverEquipo(id);
             equipoActual.Nombre = equipoNuevo.Nombre;
             equipoActual.Pais = equipoNuevo.Pais;
 
@@ -49,7 +50,7 @@ namespace Clase_3_MVC.Web.Servicio
         {
             List<string> paisesExistentes = new List<string>();
 
-            foreach (EquipoViewModel equipo in ListaEQ)
+            foreach (Equipo equipo in ListaEQ)
             {
 
                 if (!paisesExistentes.Contains(equipo.Pais))
@@ -62,7 +63,7 @@ namespace Clase_3_MVC.Web.Servicio
             return paisesExistentes;
         }
 
-        public List<EquipoViewModel> ObtenerTodos()
+        public List<Equipo> ObtenerTodos()
         {
             return ListaEQ;
         }

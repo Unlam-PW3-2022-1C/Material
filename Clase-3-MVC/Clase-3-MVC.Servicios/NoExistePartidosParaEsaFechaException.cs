@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Clase_3_MVC.Web.Servicio
+namespace Clase_3_MVC.Servicios
 {
     [Serializable]
-    internal class NoExistePartidosParaEsaFechaException : Exception
+    public class NoExistePartidosParaEsaFechaException : Exception
     {
         public NoExistePartidosParaEsaFechaException()
         {

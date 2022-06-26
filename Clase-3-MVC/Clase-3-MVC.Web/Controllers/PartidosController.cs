@@ -1,6 +1,5 @@
-﻿using Clase_3_MVC.Web.Models;
-using Clase_3_MVC.Web.Servicio;
-
+﻿using Clase_3_MVC.Entidades;
+using Clase_3_MVC.Servicios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,11 +12,11 @@ namespace Clase_3_MVC.Web.Controllers
     public class PartidosController : Controller
     {
 
-        private readonly IServicioPartido ISEquipo;
+        private readonly ServicioPartido _servicioPartido;
 
-        public PartidosController(IServicioPartido servicioEquipo)
+        public PartidosController(ServicioPartido servicioEquipo)
         {
-            ISEquipo = servicioEquipo;
+            _servicioPartido = servicioEquipo;
 
         }
 
@@ -25,16 +24,16 @@ namespace Clase_3_MVC.Web.Controllers
         // GET: PartidosController
         public IActionResult Lista()
         {
-            List<PartidoViewModel> listPartidos = ISEquipo.ObtenerPartidos();
+            List<Partido> listPartidos = _servicioPartido.ObtenerPartidos();
             return View(listPartidos);
         }
 
         public IActionResult DelDia(IFormCollection colection)
         {
-            List<PartidoViewModel> partidosDeEseDia;
+            List<Partido> partidosDeEseDia;
             try
             {
-                partidosDeEseDia = ISEquipo.ConsultarFecha(colection);
+                partidosDeEseDia = _servicioPartido.ConsultarFecha(colection);
             }
             catch (NoExistePartidosParaEsaFechaException e)
             {
@@ -48,8 +47,8 @@ namespace Clase_3_MVC.Web.Controllers
         public ActionResult FormularioNuevoPartido()
         {
 
-            Equipos equipos = new Equipos();
-            List<EquipoViewModel> listEQ = equipos.GetEquipos();
+            ListaEquipos equipos = new ListaEquipos();
+            List<Equipo> listEQ = equipos.GetEquipos();
             return View(listEQ);
         }
 
@@ -63,7 +62,7 @@ namespace Clase_3_MVC.Web.Controllers
                 throw new ArgumentNullException(nameof(collection));
             }
 
-            ISEquipo.AgregarNuevoPartido(collection);
+            _servicioPartido.AgregarNuevoPartido(collection);
             return RedirectToAction(nameof(Lista));
 
         }
@@ -74,11 +73,30 @@ namespace Clase_3_MVC.Web.Controllers
             return View();
         }
 
+        public ActionResult Editar(int id)
+        {
+            Partido partido = _servicioPartido.ObtenerPartidoPorId(id);
+            return View(partido);
+        }
 
+        [HttpPost]
+        public ActionResult Editar(IFormCollection collection)
+        {
+            int id = Int32.Parse(collection["id"]);
+            DateTime fecha = Convert.ToDateTime(collection["fecha"]);
+            String lugar = collection["lugar"];
 
+            _servicioPartido.Editar(id, fecha, lugar);
 
+            return RedirectToAction(nameof(Lista));
+        }
 
-        //crear un controller y servicio para los equipos, que los liste, que los guarde y los implemente 
-        //el servicio de partidos, que a la hora de cargar partidos me aparezcan en un option. 
+        public ActionResult EliminarPorIdEquipo(IFormCollection collection)
+        {
+            int id = Int32.Parse(collection["idEquipo"]);
+            _servicioPartido.EliminarPorIdDeEquipo(id);
+            return RedirectToAction(nameof(Lista));
+        }
+
     }
 }
